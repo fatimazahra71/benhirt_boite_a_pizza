@@ -36,8 +36,42 @@ class ProductCrudController extends CrudController
     {
         $this->crud->setValidation(ProductRequest::class);
 
-        // TODO: remove setFromDb() and manually define Fields
-        $this->crud->setFromDb();
+   
+        $this->crud->addField([
+            'name' => 'nom',
+            'label' => 'Nom ',
+            'type' => 'text'
+          ]);
+          $this->crud->addField([  
+ 
+            'label' => "Category",
+            'type' => 'select',
+            'name' => 'category_id', 
+            'entity' => 'category', 
+            'attribute' => 'name', 
+            'model' => "App\Models\Category",
+   ]);
+        $this->crud->addField([
+            'name' => 'prix',
+            'label' => 'Prix  ',
+            'type' => 'number'
+          ]);
+        $this->crud->addField([
+            'name' => 'remise',
+            'label' => 'Remise  ',
+            'type' => 'number'
+          ]);
+        $this->crud->addField([
+            'name' => 'date_debut',
+            'label' => 'Date debut  ',
+            'type' => 'date'
+          ]);
+        $this->crud->addField([
+            'name' => 'date_fin',
+            'label' => 'Date fin  ',
+            'type' => 'date'
+          ]);
+
     }
 
     protected function setupUpdateOperation()

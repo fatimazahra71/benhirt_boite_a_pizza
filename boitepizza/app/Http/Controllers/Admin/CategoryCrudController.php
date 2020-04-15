@@ -29,7 +29,20 @@ class CategoryCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        $this->crud->setColumns([
+            [
+                'name' => 'id',
+                'label' => 'id ',
+                'type' => 'number'
+                  
+            ],
+            [
+                'name' => 'name',
+                'label' => 'Nom ',
+                'type' => 'text'
+                  
+            ]
+        ]);
     }
 
     protected function setupCreateOperation()

@@ -5,7 +5,7 @@ namespace App\Models;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Client extends Model
 {
     use CrudTrait;
 
@@ -15,7 +15,7 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'products';
+    protected $table = 'clients';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     protected $guarded = ['id'];
@@ -29,16 +29,11 @@ class Product extends Model
     |--------------------------------------------------------------------------
     */
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
     public function setImageAttribute($value)
     {
-        $attribute_name = "img";
+        $attribute_name = "imge";
         $disk = "public_folder";
-        $destination_path = "Desktop/images";
+        $destination_path = "Desktop/clients";
 
         // if the image was erased
         if ($value==null) {
@@ -62,6 +57,11 @@ class Product extends Model
             $this->attributes[$attribute_name] = $destination_path.'/'.$filename;
         }
     }
+
+    public function setMotdepasseAttribute($value) {
+        $this->attributes['motdepasse'] = \Hash::make($value);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS

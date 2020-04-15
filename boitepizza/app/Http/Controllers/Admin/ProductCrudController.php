@@ -29,7 +29,53 @@ class ProductCrudController extends CrudController
     protected function setupListOperation()
     {
         // TODO: remove setFromDb() and manually define Columns, maybe Filters
-        $this->crud->setFromDb();
+        $this->crud->setColumns([
+          [
+            'name' => 'nom',
+            'label' => 'Nom ',
+            'type' => 'text'
+          ],
+          [
+            'label' => "Category",
+            'type' => 'select',
+            'name' => 'category_id', 
+            'entity' => 'category', 
+            'attribute' => 'name', 
+            'model' => "App\Models\Category",
+          ],
+          [
+            'name' => 'prix',
+            'label' => 'Prix  ',
+            'type' => 'number'
+          ],
+          [
+            'name' => 'remise',
+            'label' => 'Remise  ',
+            'type' => 'number'
+          ],
+          [
+            'label' => "Image",
+            'name' => "img",
+            'type' => 'image',
+            'upload' => true,
+            //'crop' => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1,
+            'height' => '80px',
+            'width' => '80px'
+          ],
+          [
+            'name' => 'date_debut',
+            'label' => 'Date debut  ',
+            'type' => 'date'
+          ],
+          [
+            'name' => 'date_fin',
+            'label' => 'Date fin  ',
+            'type' => 'date'
+          ]
+        ]);
+
+
     }
 
     protected function setupCreateOperation()
@@ -50,8 +96,8 @@ class ProductCrudController extends CrudController
             'entity' => 'category', 
             'attribute' => 'name', 
             'model' => "App\Models\Category",
-   ]);
-        $this->crud->addField([
+          ]);
+          $this->crud->addField([
             'name' => 'prix',
             'label' => 'Prix  ',
             'type' => 'number'
@@ -61,6 +107,14 @@ class ProductCrudController extends CrudController
             'label' => 'Remise  ',
             'type' => 'number'
           ]);
+          $this->crud->addField([ 
+            'label' => "Image",
+            'name' => "img",
+            'type' => 'image',
+            'upload' => true,
+            'crop' => true, // set to true to allow cropping, false to disable
+            'aspect_ratio' => 1, 
+        ]);
         $this->crud->addField([
             'name' => 'date_debut',
             'label' => 'Date debut  ',

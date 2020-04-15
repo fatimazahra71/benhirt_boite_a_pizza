@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->integer('remise');
             $table->date('date_debut');
             $table->date('date_fin');
+            $table->LONGTEXT('img');
             $table->unsignedInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
